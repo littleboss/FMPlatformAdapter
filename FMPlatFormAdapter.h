@@ -42,7 +42,17 @@ namespace   FM {
         virtual const char* getVersion();
         
         
+        /**
+         * callSynFunc 
+         * return void*
+         */
+        virtual void* callSynFunc(const char* methodName,const char* paramCodes,...);
         
+        /**
+         * callASynFunc 
+         * return void
+         */
+        virtual void callASynFunc(const char* methodName,const char* callBack,const char* paramCodes,...);
         
     public:
         static FMPlatFormAdapter* getSingleton()

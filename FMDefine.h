@@ -29,11 +29,12 @@
 
 #include "cocos2d.h"
 
-
-#if DEBUG
-    #define FMLog(format, ...)      CCLOG(format, ##__VA_ARGS__)
-#else
-    #define FMLog(...) 
+#ifndef FMLog
+    #if DEBUG
+        #define FMLog(format, ...)      CCLOG(format, ##__VA_ARGS__)
+    #else
+        #define FMLog(...) 
+    #endif
 #endif
 
 #endif

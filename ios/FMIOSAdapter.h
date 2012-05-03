@@ -37,6 +37,18 @@ public:
      *   get FMPlatFormAdapter version
      */
     virtual const char* getVersion();
+    
+    /**
+     * callSynFunc 
+     * return void*
+     */
+    virtual void* callSynFunc(const char* methodName,va_list args);
+    
+    /**
+     * callASynFunc 
+     * return void
+     */
+    virtual void callASynFunc(const char* methodName,const char* callBack,va_list args);
 public:
     static FMIOSAdapter* getSingleton()
     {

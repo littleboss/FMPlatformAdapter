@@ -24,19 +24,19 @@
  ****************************************************************************/
 
 #include "FMIOSAdapter.h"
-
+#include "FMIOSBridge.h"
 
 namespace   FM {
     
     FMIOSAdapter* FMIOSAdapter::m_singleton=NULL;
-    
+    static FMIOSBridge* s_FMIOSBridge = NULL;
 
     FMIOSAdapter* FMIOSAdapter::initSingleton()
     {
         if(NULL==m_singleton)
         {
-            m_singleton=new FMIOSAdapter();
-            
+            m_singleton = new FMIOSAdapter();
+            s_FMIOSBridge = [[FMIOSBridge alloc] init];
         }
         return m_singleton;
     }
@@ -51,10 +51,29 @@ namespace   FM {
         return "IOS 0.0.1";
     }
     
+    /**
+     * callSynFunc 
+     * return void*
+     */
     
+    void* FMIOSAdapter::callSynFunc(const char* methodName,va_list args){
+        return (void*)"ios to do";
+    }
+    
+    /**
+     * callASynFunc 
+     * return void
+     */
+    
+    void FMIOSAdapter::callASynFunc(const char* methodName,const char* callBack,va_list args){
+//        [s_FMIOSBridge callFunc:[NSString stringWithUTF8String:methodName] paramCode:[NSString stringWithUTF8String:paramCode] callBack:[NSString stringWithUTF8String:callBack]];
+    }
+    
+
     
     FMIOSAdapter::~FMIOSAdapter()
     {
         FMLog("~FMIOSAdapter");
+        [s_FMIOSBridge release];
     }
 }

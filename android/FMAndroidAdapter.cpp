@@ -24,6 +24,24 @@
  ****************************************************************************/
 
 #include "FMAndroidAdapter.h"
+#include "platform/android/jni/JniHelper.h"
+
+#define kJniPacketName "com/fminutes/FMJNIHelper"
+
+
+
+
+#include <android/log.h>
+#include <jni.h>
+
+
+#if 1
+#define  LOG_TAG    "FMAndroidAdapter"
+#define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
+#else
+#define  LOGD(...) 
+#endif
+
 namespace   FM {
     
     FMAndroidAdapter* FMAndroidAdapter::m_singleton=NULL;
@@ -49,9 +67,59 @@ namespace   FM {
         return "Android 0.0.1";
     }
     
+
+    
+    /**
+     * callSynFunc 
+     * return void*
+     */
+    
+    void* FMAndroidAdapter::callSynFunc(const char* methodName,va_list args){
+        JniMethodInfo t;
+         LOGD("callSynFunc 1");
+        if (JniHelper::getStaticMethodInfo(t, 
+                                           kJniPacketName, 
+                                           methodName,
+                                           "(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)Ljava/lang/Object;"))
+//        if (JniHelper::getStaticMethodInfo(t, 
+//                                           kJniPacketName, 
+//                                           methodName,
+//                                           "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;"))
+
+        
+        {
+            
+            LOGD("callSynFunc 2");
+            
+            char* ret = 0;
+            
+           // jstring stringArg1 = t.env->NewStringUTF("test");
+            jstring strrs = (jstring)t.env->CallStaticObjectMethodV(t.classID, t.methodID,args);
+           // t.env->DeleteLocalRef(stringArg1);
+            t.env->DeleteLocalRef(t.classID);
+
+            ret = (char*)JniHelper::jstring2string(strrs).c_str();
+            //FM::FMPlatFormAdapter::getSingleton()->callSynFunc("invokeStaticMethod","testClassName","testParams1","testParams2",NULL);
+            LOGD("ret %s",ret);
+            
+        }
+        LOGD("callSynFunc 3");
+        return (void*)"test Android callSynFunc";
+    }
+    
+    /**
+     * callASynFunc 
+     * return void
+     */
+    
+    void FMAndroidAdapter::callASynFunc(const char* methodName,const char* callBack,va_list args){
+    
+    }
+    
     
     FMAndroidAdapter::~FMAndroidAdapter()
     {
         FMLog("~FMAndroidAdapter"); 
     }
+    
 }

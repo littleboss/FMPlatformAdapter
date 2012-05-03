@@ -1,8 +1,8 @@
 /****************************************************************************
-
+ 
  Copyright (c) 2012      longfei zhu,Five Minutes
  
- https://github.com/zhuthesea/FMAndroidAdapter
+ https://github.com/zhuthesea/FMPlatformAdapter
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -23,53 +23,22 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef _FMAndroidAdapter_h_
-#define _FMAndroidAdapter_h_
+#import <Foundation/Foundation.h>
 
-#include "cocos2d.h"
-#include "FMDefine.h"
-USING_NS_CC;
+@interface FMIOSBridge : NSObject
 
-namespace   FM {
-    class FMAndroidAdapter
-    {
-    public:
-        
-        
-        /**
-         *   get FMAndroidAdapter version
-         */
-        virtual const char* getVersion();
-        
-        /**
-         * callSynFunc 
-         * return void*
-         */
-        virtual void* callSynFunc(const char* methodName,va_list args);
-        
-        /**
-         * callASynFunc 
-         * return void
-         */
-        virtual void callASynFunc(const char* methodName,const char* callBack,va_list args);
-        
-        
-    public:
-        static FMAndroidAdapter* getSingleton()
-        {
-            if(NULL==m_singleton)
-            {
-                return initSingleton();
-            }
-            return m_singleton;
-        }
-        ~FMAndroidAdapter();
-    private:
-        FMAndroidAdapter();
-    private:
-        static FMAndroidAdapter* initSingleton();
-        static FMAndroidAdapter* m_singleton;        
-    };
-}//namespace   FM 
+/**
+ * callSynFunc 
+ * return void*
+ */
 
-#endif
+-(void*) callSynFunc:(const char*) methodName paramCodes:(va_list)paramCodes;
+
+/**
+ * callASynFunc 
+ * return void
+ */
+-(void) callASynFunc:(const char*) methodName callBack:(const char*)callBack paramCodes:(va_list)paramCodes;
+
+
+@end

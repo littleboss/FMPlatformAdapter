@@ -62,6 +62,51 @@ namespace   FM {
 #endif  // CC_PLATFORM_ANDROID    
     }
     
+
+    /**
+     * callSynFunc 
+     * return void*
+     */
+    
+    void* FMPlatFormAdapter::callSynFunc(const char* methodName,const char* paramCodes,...){
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        va_list args;
+		va_start(args,paramCodes);
+        void* v = FMIOSAdapter::getSingleton()->callSynFunc(methodName,args);
+        va_end(args);
+        return v;
+#endif  // CC_PLATFORM_IOS
+        
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        va_list args;
+		va_start(args,paramCodes);
+        void* v = FMAndroidAdapter::getSingleton()->callSynFunc(methodName,args);
+        va_end(args);
+        return v;
+#endif  // CC_PLATFORM_ANDROID 
+    }
+    
+    /**
+     * callASynFunc 
+     * return void
+     */
+    
+    void FMPlatFormAdapter::callASynFunc(const char* methodName,const char* callBack,const char* paramCodes,...){
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        va_list args;
+		va_start(args,paramCodes);
+        FMIOSAdapter::getSingleton()->callASynFunc(methodName,callBack,args);
+        va_end(args);
+#endif  // CC_PLATFORM_IOS
+        
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        va_list args;
+		va_start(args,paramCodes);
+        FMAndroidAdapter::getSingleton()->callASynFunc(methodName,callBack,args);
+        va_end(args);
+#endif  // CC_PLATFORM_ANDROID 
+    }
+    
     
     FMPlatFormAdapter::~FMPlatFormAdapter()
     {
@@ -74,4 +119,8 @@ namespace   FM {
         delete FMAndroidAdapter::getSingleton();
 #endif  // CC_PLATFORM_ANDROID    
     }
+    
+    
+    
+    
 }
