@@ -62,6 +62,38 @@ namespace   FM {
 #endif  // CC_PLATFORM_ANDROID    
     }
     
+    
+    std::string FMPlatFormAdapter::callProcNameR(const char* methodName){
+        return callFuncNameR(methodName,NULL);
+    }
+    
+    void FMPlatFormAdapter::callProcNameV(const char* methodName){
+        callFuncNameV(methodName,NULL);
+    }
+    
+    
+    std::string FMPlatFormAdapter::callFuncNameR(const char* methodName,const char* paramCode){
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        return FMIOSAdapter::getSingleton()->callFuncNameR(methodName,paramCode);
+#endif  // CC_PLATFORM_IOS
+        
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        return FMAndroidAdapter::getSingleton()->getVersion();
+#endif  // CC_PLATFORM_ANDROID 
+    }
+    
+    void FMPlatFormAdapter::callFuncNameV(const char* methodName,const char* paramCode){
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        
+        FMIOSAdapter::getSingleton()->callFuncNameV(methodName,paramCode);
+#endif  // CC_PLATFORM_IOS
+        
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        
+        FMAndroidAdapter::getSingleton()->callFuncNameV(methodName,paramCode);
+#endif  // CC_PLATFORM_ANDROID 
+        
+    }
 
     /**
      * callSynFunc 

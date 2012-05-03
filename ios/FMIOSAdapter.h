@@ -38,6 +38,12 @@ public:
      */
     virtual const char* getVersion();
     
+    
+    virtual std::string callFuncNameR(const char* methodName,const char* paramCode);
+    virtual void callFuncNameV(const char* methodName,const char* paramCode);
+    
+    
+    
     /**
      * callSynFunc 
      * return void*

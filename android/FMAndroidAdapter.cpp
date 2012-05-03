@@ -27,7 +27,7 @@
 #include "platform/android/jni/JniHelper.h"
 
 #define kJniPacketName "com/fminutes/FMJNIHelper"
-
+#define kJniClassName "FMJNIHelp" // java static class name
 
 
 
@@ -67,10 +67,112 @@ namespace   FM {
         return "Android 0.0.1";
     }
     
+    
+    
+    std::string FMAndroidAdapter::callFuncNameR(const char* methodName,const char* paramCode){
+        JniMethodInfo t;
+        LOGD("callFuncNameR 1");
+        if (paramCode != NULL) {
+            if (JniHelper::getStaticMethodInfo(t, 
+                                               kJniPacketName, 
+                                               "callFuncNameR",
+                                               "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;")) 
+            {
+                
+                LOGD("callFuncNameR 2_1");
+                
+                jstring jclassName = t.env->NewStringUTF(kJniClassName);
+                jstring jmethodName = t.env->NewStringUTF(methodName);
+                jstring jparamCode = t.env->NewStringUTF(paramCode);
+                jstring strrs = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID,jclassName,jmethodName,jparamCode);
+                t.env->DeleteLocalRef(jclassName);
+                t.env->DeleteLocalRef(jmethodName);
+                t.env->DeleteLocalRef(jparamCode);
+                t.env->DeleteLocalRef(t.classID);
+                
+                return JniHelper::jstring2string(strrs);
+                
+                
+            }
+        }else{
+            if (JniHelper::getStaticMethodInfo(t, 
+                                               kJniPacketName, 
+                                               "callFuncNameR",
+                                               "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;")) 
+            {
+                
+                LOGD("callFuncNameR 2_2");
+                
+                jstring jclassName = t.env->NewStringUTF(kJniClassName);
+                jstring jmethodName = t.env->NewStringUTF(methodName);
+                jstring strrs = (jstring)t.env->CallStaticObjectMethod(t.classID, t.methodID,jclassName,jmethodName);
+                t.env->DeleteLocalRef(jclassName);
+                t.env->DeleteLocalRef(jmethodName);
+                t.env->DeleteLocalRef(t.classID);
+                
+                return JniHelper::jstring2string(strrs);
+                
+                
+            }
+        }
+
+        LOGD("callFuncNameR 3");
+        return "";
+    }
+    
+    void FMAndroidAdapter::callFuncNameV(const char* methodName,const char* paramCode){
+        JniMethodInfo t;
+        LOGD("callFuncNameV 1");
+        if (paramCode != NULL) {
+            if (JniHelper::getStaticMethodInfo(t, 
+                                               kJniPacketName, 
+                                               "callFuncNameV",
+                                               "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V")) 
+            {
+                
+                LOGD("callFuncNameV 2_1");
+                
+                jstring jclassName = t.env->NewStringUTF(kJniClassName);
+                jstring jmethodName = t.env->NewStringUTF(methodName);
+                jstring jparamCode = t.env->NewStringUTF(paramCode);
+                
+                t.env->CallStaticVoidMethod(t.classID, t.methodID,jclassName,jmethodName,jparamCode);
+                
+                t.env->DeleteLocalRef(jclassName);
+                t.env->DeleteLocalRef(jmethodName);
+                t.env->DeleteLocalRef(jparamCode);
+                t.env->DeleteLocalRef(t.classID);
+
+                
+                
+                
+            }
+        }else{
+            if (JniHelper::getStaticMethodInfo(t, 
+                                               kJniPacketName, 
+                                               "callFuncNameV",
+                                               "(Ljava/lang/String;Ljava/lang/String;)V")) 
+            {
+                
+                LOGD("callFuncNameV 2_2");
+                
+                jstring jclassName = t.env->NewStringUTF(kJniClassName);
+                jstring jmethodName = t.env->NewStringUTF(methodName);
+                t.env->CallStaticVoidMethod(t.classID, t.methodID,jclassName,jmethodName);
+                t.env->DeleteLocalRef(jclassName);
+                t.env->DeleteLocalRef(jmethodName);
+                t.env->DeleteLocalRef(t.classID);
+
+            }
+        }
+        
+        LOGD("callFuncNameR 3");
+    }
+    
 
     
     /**
-     * callSynFunc 
+     * callSynFunc not imp yet
      * return void*
      */
     

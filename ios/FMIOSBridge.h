@@ -27,6 +27,11 @@
 
 @interface FMIOSBridge : NSObject
 
+-(const char*)callFuncNameR:(const char*) methodName paramCode:(const char*)paramCode;
+-(void)callFuncNameV:(const char*) methodName paramCode:(const char*)paramCode;
+
+-(const char*)getVersion;
+
 /**
  * callSynFunc 
  * return void*

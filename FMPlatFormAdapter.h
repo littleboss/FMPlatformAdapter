@@ -42,14 +42,33 @@ namespace   FM {
         virtual const char* getVersion();
         
         
+        
         /**
-         * callSynFunc 
-         * return void*
+         *@param methodName
+         *@param paramCode
+         *@return string
+         */
+        virtual std::string callFuncNameR(const char* methodName,const char* paramCode);
+        virtual void callFuncNameV(const char* methodName,const char* paramCode);
+        
+        virtual std::string callProcNameR(const char* methodName);
+        virtual void callProcNameV(const char* methodName);
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+         * callSynFunc not imp yet
+         *@return void*
          */
         virtual void* callSynFunc(const char* methodName,const char* paramCodes,...);
         
         /**
-         * callASynFunc 
+         * callASynFunc not imp yet
          * return void
          */
         virtual void callASynFunc(const char* methodName,const char* callBack,const char* paramCodes,...);

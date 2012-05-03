@@ -26,10 +26,50 @@
 #import "FMIOSBridge.h"
 
 
-static const int kMaxLogLen = 16*1024;
+//static const int kMaxLogLen = 16*1024;
 
 
 @implementation FMIOSBridge
+
+
+-(const char*)callFuncNameR:(const char*) methodName paramCode:(const char*)paramCode{
+
+    // to do
+    return "to do";
+    
+}
+
+
+-(void)callFuncNameV:(const char*) methodName paramCode:(const char*)paramCode{
+    NSString* performaction = [NSString stringWithUTF8String:methodName];
+    if (paramCode == NULL) {
+        if ([performaction length] >0) {
+            SEL sel=sel_registerName(methodName);
+            if ([self respondsToSelector:sel]) {
+                [self performSelector:sel];
+            }  
+        }else{
+            NSLog(@"methodName null1");
+            assert(false);
+        }
+    }else{
+        if ([performaction length] >0) {
+            SEL sel=sel_registerName([[NSString stringWithFormat:@"%@:",methodName] UTF8String]);
+            if ([self respondsToSelector:sel]) {
+                [self performSelector:sel withObject:[NSString stringWithUTF8String:paramCode]];
+            }  
+        }else{
+            NSLog(@"methodName null2");
+            assert(false);
+        }
+    }
+}
+
+
+-(const char*)getVersion{
+
+    return [[NSString stringWithUTF8String:"v0.1"] UTF8String];
+}
 
 
 /**
@@ -38,7 +78,7 @@ static const int kMaxLogLen = 16*1024;
  */
 
 -(void*) callSynFunc:(const char*) methodName paramCodes:(va_list)paramCodes{
-
+    return "to do";
 
 }
 

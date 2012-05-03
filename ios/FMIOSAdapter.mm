@@ -48,7 +48,20 @@ namespace   FM {
     }
     
     const char* FMIOSAdapter::getVersion(){
-        return "IOS 0.0.1";
+        return [s_FMIOSBridge getVersion];
+    }
+    
+    
+    
+    std::string FMIOSAdapter::callFuncNameR(const char* methodName,const char* paramCode){
+        
+        return string([s_FMIOSBridge callFuncNameR:methodName paramCode:paramCode]);
+    }
+    
+    void FMIOSAdapter::callFuncNameV(const char* methodName,const char* paramCode){
+        //callFuncNameR(methodName,paramCode);
+        [s_FMIOSBridge callFuncNameV:methodName paramCode:paramCode];
+        
     }
     
     /**
@@ -66,7 +79,7 @@ namespace   FM {
      */
     
     void FMIOSAdapter::callASynFunc(const char* methodName,const char* callBack,va_list args){
-//        [s_FMIOSBridge callFunc:[NSString stringWithUTF8String:methodName] paramCode:[NSString stringWithUTF8String:paramCode] callBack:[NSString stringWithUTF8String:callBack]];
+
     }
     
 
