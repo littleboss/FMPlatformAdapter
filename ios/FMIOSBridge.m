@@ -34,6 +34,9 @@
 
 -(const char*)callFuncNameR:(const char*) methodName paramCode:(const char*)paramCode{
 
+    if (strcmp(methodName, "getDeviceName") == 0) {
+        return [[[UIDevice currentDevice] name] UTF8String];
+    }
     // to do
     return "to do";
     
@@ -68,7 +71,7 @@
 
 -(const char*)getVersion{
 
-    return [[NSString stringWithUTF8String:"v0.1"] UTF8String];
+    return [[NSString stringWithUTF8String:" IOS v0.1"] UTF8String];
 }
 
 

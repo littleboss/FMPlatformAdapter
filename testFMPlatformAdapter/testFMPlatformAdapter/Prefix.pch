@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'testFMPlatformAdapter' target in the 'testFMPlatformAdapter' project
+//
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+	#import <UIKit/UIKit.h>
+#endif
