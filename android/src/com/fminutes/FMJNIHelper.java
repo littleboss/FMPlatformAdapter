@@ -37,9 +37,15 @@ public class FMJNIHelper {
 		System.out.println("callFuncNameV 2");
 		System.out.println("className "+ className);
 		System.out.println("methodNamexx " + methodName);
-		//FMJNIHelp.showMemory();
+
+
+		if (className.equals("FMJNIHelp")) {
+			if (methodName.equals("getUmengOnlineConfig")){
+				// FMJNIHelp.getUmengOnlineConfig(args);
+			}
+		}
 		
-		FMJNIHelper.nativecallfromjavatocpp(methodName,className);
+		//FMJNIHelper.nativecallfromjavatocpp(methodName,className);
 		
 		/*
 		try {
@@ -61,7 +67,24 @@ public class FMJNIHelper {
         */   
 	}   
 	
-	public static Object callFuncNameR(String className, String methodName,String args) throws Exception {                                  
+	
+	public static String callFuncNameR(String className, String methodName,
+			String args) {
+		
+		System.out.println("callFuncNameR 2");
+		System.out.println("className "+ className);
+		System.out.println("methodName " + methodName);
+		System.out.println("args " + args);
+		
+		if (className.equals("FMJNIHelp")) {
+			if (methodName.equals("getUmengOnlineConfig")){
+				return FMJNIHelp.getUmengOnlineConfig(args);
+			}
+		}
+		return null;
+	}
+	
+	public static Object callFuncNameRObject(String className, String methodName,String args) throws Exception {                                  
 		System.out.println("callFuncNameR ....xxx");
 		if(className == null){
 			System.out.println("className isnull");
@@ -70,23 +93,23 @@ public class FMJNIHelper {
 		}
 		System.out.println("className "+ className.toString());
 		System.out.println("methodName " + methodName.toString());
-		Class ownerClass = Class.forName(className);    // call from jni crash here !???  to do                           
-		Class[] argsClass = null;
-		if(args != null)
-		{
-			argsClass = new Class[1];                                
-
-			for (int i = 0, j = 1; i < j; i++) {                             
-				argsClass[i] = args.getClass();                                     
-			}                   
-		}else{
-			System.out.println("args null");
-		}
-
-		Method method = ownerClass.getMethod(methodName, argsClass);               
-		System.out.println("invoke");
-		return method.invoke(null, args);                                          
-   
+//		Class ownerClass = Class.forName(className);    // call from jni crash here !???  to do                           
+//		Class[] argsClass = null;
+//		if(args != null)
+//		{
+//			argsClass = new Class[1];                                
+//
+//			for (int i = 0, j = 1; i < j; i++) {                             
+//				argsClass[i] = args.getClass();                                     
+//			}                   
+//		}else{
+//			System.out.println("args null");
+//		}
+//
+//		Method method = ownerClass.getMethod(methodName, argsClass);               
+//		System.out.println("invoke");
+//		return method.invoke(null, args);                                          
+		return "to do";
 	}   
 
 	
@@ -106,34 +129,35 @@ public class FMJNIHelper {
 		System.out.println("className "+ className);
 		System.out.println("methodName " + methodName);
 		
-		Object[] args = null;
-		Class ownerClass = Class.forName(className);              // call from jni crash here !???  to do                 
-		Class[] argsClass = new Class[args.length];                                
-    
-		for (int i = 0, j = args.length; i < j; i++) {                             
-			argsClass[i] = args[i].getClass();                                     
-		}                                                                          
-
-		Method method = ownerClass.getMethod(methodName, argsClass);               
-
-		return method.invoke(null, args);                                          
-   
+//		Object[] args = null;
+//		Class ownerClass = Class.forName(className);              // call from jni crash here !???  to do                 
+//		Class[] argsClass = new Class[args.length];                                
+//    
+//		for (int i = 0, j = args.length; i < j; i++) {                             
+//			argsClass[i] = args[i].getClass();                                     
+//		}                                                                          
+//
+//		Method method = ownerClass.getMethod(methodName, argsClass);               
+//
+//		return method.invoke(null, args);                                          
+		return "to do";
 	}   
 	
 	public static Object invokeStaticMethod(String className, String methodName,Object[] args) throws Exception {                                  
 		System.out.println("invokeStaticMethod 2");
 		System.out.println("className "+ className);
 		System.out.println("methodName " + methodName);
-		Class ownerClass = Class.forName(className);         // call from jni crash here !???  to do                      
-		Class[] argsClass = new Class[args.length];                                
-
-		for (int i = 0, j = args.length; i < j; i++) {                             
-			argsClass[i] = args[i].getClass();                                     
-		}                                                                          
-
-		Method method = ownerClass.getMethod(methodName, argsClass);               
-
-		return method.invoke(null, args);                                          
+//		Class ownerClass = Class.forName(className);         // call from jni crash here !???  to do                      
+//		Class[] argsClass = new Class[args.length];                                
+//
+//		for (int i = 0, j = args.length; i < j; i++) {                             
+//			argsClass[i] = args[i].getClass();                                     
+//		}                                                                          
+//
+//		Method method = ownerClass.getMethod(methodName, argsClass);               
+//
+//		return method.invoke(null, args);                                          
+		return "to do";
    
 	}   
 	
@@ -147,17 +171,17 @@ public class FMJNIHelper {
 		}
 		System.out.println("className "+ className.toString());
 		System.out.println("methodName " + methodName.toString());
-		Class ownerClass = Class.forName(className);                 // call from jni crash here !???  to do              
-		Class[] argsClass = new Class[args.length];                                
-
-		for (int i = 0, j = args.length; i < j; i++) {                             
-			argsClass[i] = args[i].getClass();                                     
-		}                                                                          
-
-		Method method = ownerClass.getMethod(methodName, argsClass);               
-
-		return method.invoke(null, args);                                          
-   
+//		Class ownerClass = Class.forName(className);                 // call from jni crash here !???  to do              
+//		Class[] argsClass = new Class[args.length];                                
+//
+//		for (int i = 0, j = args.length; i < j; i++) {                             
+//			argsClass[i] = args[i].getClass();                                     
+//		}                                                                          
+//
+//		Method method = ownerClass.getMethod(methodName, argsClass);               
+//
+//		return method.invoke(null, args);                                          
+		return "to do";
 	}   
 
 }

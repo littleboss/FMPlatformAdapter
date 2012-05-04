@@ -78,7 +78,7 @@ namespace   FM {
 #endif  // CC_PLATFORM_IOS
         
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-        return FMAndroidAdapter::getSingleton()->getVersion();
+        return FMAndroidAdapter::getSingleton()->callFuncNameR(methodName,paramCode);
 #endif  // CC_PLATFORM_ANDROID 
     }
     

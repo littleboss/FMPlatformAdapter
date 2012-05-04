@@ -36,14 +36,14 @@ extern "C"
         
         jboolean isCopy = 0;
         const char* pszmethodName = env->GetStringUTFChars(methodName, &isCopy);
-        CCMessageBox(pszmethodName, "call from java");
+        CCMessageBox(pszmethodName, "call from java 1");
         if (isCopy) 
         {
             env->ReleaseStringUTFChars(methodName, pszmethodName);
         }
         isCopy = 0;
         const char* pszret = env->GetStringUTFChars(ret, &isCopy);
-        CCMessageBox(pszret, "call from java");
+        CCMessageBox(pszret, "call from java 2");
         if (isCopy) 
         {
             env->ReleaseStringUTFChars(ret, pszret);

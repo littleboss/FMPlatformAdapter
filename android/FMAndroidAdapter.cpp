@@ -89,8 +89,9 @@ namespace   FM {
                 t.env->DeleteLocalRef(jmethodName);
                 t.env->DeleteLocalRef(jparamCode);
                 t.env->DeleteLocalRef(t.classID);
-                
-                return JniHelper::jstring2string(strrs);
+                std::string rs = JniHelper::jstring2string(strrs);
+                LOGD("callFuncNameR rs %s",rs.c_str());
+                return rs;
                 
                 
             }
